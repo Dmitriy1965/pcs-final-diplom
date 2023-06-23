@@ -16,14 +16,9 @@ public class Main {
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 ) {
                     out.println("Ваш запрос");
-                 //   System.out.println("New connection accepted");
                     final String searchQuery = in.readLine();
-                   //   System.out.println(searchQuery);
                     String searchResult =  engine.search(searchQuery);
-                    //  System.out.println(searchResult);
-
                    out.println(String.format(searchResult));
-                  //  System.out.println(searchResult);
 
                 } catch (IOException e) {
                     throw new RuntimeException(e);

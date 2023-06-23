@@ -18,11 +18,8 @@ public class BooleanSearchEngine implements SearchEngine {
     public BooleanSearchEngine(File pdfsDir) throws IOException {
         this.pdfsDir = pdfsDir;
 
-//        public Map<String, String> search1 = new HashMap<>();
         List<PageEntry> allwords = new ArrayList<>();
         File file = new File(String.valueOf(pdfsDir));
-//try {
-        System.out.println(file.listFiles());
 
         for (File item : file.listFiles()) {
             // проверим, является ли объект каталогом
@@ -48,13 +45,8 @@ public class BooleanSearchEngine implements SearchEngine {
                 }
                 doc.close();
             }
-//        } catch (ArithmeticException e ) {
-//
-//        System.out.println("Ошибка! Каталог не найден!");
-//    }
         }
         Collections.sort(allwords);
-//                public Map<String, String> search1 = new HashMap<>();
         String searchValue = null;
         for (int i = 0; i <= allwords.size() - 1; i++) {
 
@@ -72,10 +64,7 @@ public class BooleanSearchEngine implements SearchEngine {
         }
     }
 
-
     public String search(String word) {
-//        return search1.get(word);
-
         String json = null;
         try {
             json = new ObjectMapper().writeValueAsString(search1.get(word));
@@ -83,16 +72,6 @@ public class BooleanSearchEngine implements SearchEngine {
             throw new RuntimeException(e);
         }
         return json;
-
-
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            String json = mapper.writeValueAsString( return search1.get(word));
-//            return json;
-//        } catch (IOException ex) {
-//            Logger.getLogger(JacksonMapToJSONStringExample.class.getName())
-//                    .log(Level.SEVERE, null, ex);
-//        }
     }
 }
 
