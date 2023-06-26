@@ -18,15 +18,18 @@ public class Client {
 
             String answer = in.readLine();
             System.out.println(answer);
-            Scanner aa = new Scanner(System.in);
-            //         String psw = aa.nextLine();
 
+//            Scanner aa = new Scanner(System.in);
             String psw = "бизнес";
 
             out.println(psw);
             answer = in.readLine();
 
-            System.out.println(answer);
+
+          System.out.println(answer);
+//              System.out.println(answer.toString());
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
