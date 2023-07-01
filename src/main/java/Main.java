@@ -16,7 +16,7 @@ public class Main {
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 ) {
                     out.println("Ваш запрос");
-                    final String searchQuery = in.readLine();
+                    final String searchQuery = in.readLine().toLowerCase();
                     String searchResult =  engine.search(searchQuery);
                    out.println(String.format(searchResult));
 

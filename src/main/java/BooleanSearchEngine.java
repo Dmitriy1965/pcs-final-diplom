@@ -10,9 +10,8 @@ import java.util.stream.Collectors;
 
 public class BooleanSearchEngine implements SearchEngine {
 
-    public Map<String, String> search1 = new HashMap<>();
-    List<PageEntry> allwords = new ArrayList<>();
-    File pdfsDir = null;
+    protected List<PageEntry> allwords = new ArrayList<>();
+    protected File pdfsDir;
 
     public BooleanSearchEngine(File pdfsDir) throws IOException {
         this.pdfsDir = pdfsDir;
@@ -20,17 +19,14 @@ public class BooleanSearchEngine implements SearchEngine {
         File file = new File(String.valueOf(pdfsDir));
 
         for (File item : file.listFiles()) {
-            // проверим, является ли объект каталогом
-            if (item.isDirectory()) {
-            } else {
+            if (item.isFile()) {
                 var doc = new PdfDocument(new PdfReader(item));
                 int pages = doc.getNumberOfPages();
                 String text;
 
                 for (int page = 1; page <= pages; page++) {
                     text = PdfTextExtractor.getTextFromPage(doc.getPage(page));
-                    String[] words = text.toLowerCase().split("\\P{IsAlphabetic}+");
-// кол вхождений каждого слова на странице
+                    String[] words = text.toLowerCase().split("\\P{IsAlphabetic}+");  // кол вхождений каждого слова на странице
                     Map<String, Long> map = Arrays.stream(words)
                             .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
 
@@ -46,21 +42,6 @@ public class BooleanSearchEngine implements SearchEngine {
             }
         }
         Collections.sort(allwords);
-//        String searchValue = null;
-//        for (int i = 0; i <= allwords.size() - 1; i++) {
-//
-//            String pageValue = allwords.get(i).pdfName + " " +
-//                    (allwords.get(i).page) + "  " +
-//                    (allwords.get(i).count) + "\n";
-//
-//            searchValue = search1.get(allwords.get(i).word);
-//            if (searchValue == null) {
-//                searchValue = pageValue;
-//            } else {
-//                searchValue = searchValue + pageValue;
-//            }
-//            search1.put(allwords.get(i).word, searchValue);         // to get the arraylist
-//        }
     }
 
     public String search(String word) {

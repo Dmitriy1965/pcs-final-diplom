@@ -1,4 +1,4 @@
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,16 +19,18 @@ public class Client {
             String answer = in.readLine();
             System.out.println(answer);
 
-//            Scanner aa = new Scanner(System.in);
-            String psw = "бизнес";
+            String psw = "БИЗнес";
 
             out.println(psw);
             answer = in.readLine();
 
+//            ObjectMapper mapper = new ObjectMapper();
+//            String prettyJsonString = mapper.writerWithDefaultPrettyPrinter()
+//                    .writeValueAsString(answer);
+//            System.out.println(prettyJsonString);
+
 
           System.out.println(answer);
-//              System.out.println(answer.toString());
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
