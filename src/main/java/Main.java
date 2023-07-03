@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,9 +19,14 @@ public class Main {
                 ) {
                     out.println("Ваш запрос");
                     final String searchQuery = in.readLine().toLowerCase();
-                    String searchResult =  engine.search(searchQuery);
-                   out.println(String.format(searchResult));
 
+                    try {
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        String json = objectMapper.writeValueAsString(engine.search(searchQuery));
+                        out.println(json);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

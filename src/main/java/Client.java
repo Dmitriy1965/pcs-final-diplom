@@ -24,11 +24,6 @@ public class Client {
             out.println(psw);
             answer = in.readLine();
 
-//            ObjectMapper mapper = new ObjectMapper();
-//            String prettyJsonString = mapper.writerWithDefaultPrettyPrinter()
-//                    .writeValueAsString(answer);
-//            System.out.println(prettyJsonString);
-
 
           System.out.println(answer);
 

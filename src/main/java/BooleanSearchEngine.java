@@ -1,7 +1,6 @@
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class BooleanSearchEngine implements SearchEngine {
-
-    protected List<PageEntry> allwords = new ArrayList<>();
+    protected Map<String, Object> mapAll = new HashMap<>();
     protected File pdfsDir;
 
     public BooleanSearchEngine(File pdfsDir) throws IOException {
@@ -35,36 +33,24 @@ public class BooleanSearchEngine implements SearchEngine {
                         Long value = entry.getValue(); // get value
                         PageEntry tmp = new PageEntry(key, item.getName(),
                                 page, Math.toIntExact(value));
-                        allwords.add(tmp);
+
+                        List<PageEntry> temp2 = new ArrayList<>();
+                        if (mapAll.containsKey(key)) {
+                            temp2 = (List<PageEntry>) mapAll.get(key);
+                        }
+                        temp2.add(tmp);
+                        mapAll.put(key, temp2);
                     }
                 }
                 doc.close();
             }
         }
-        Collections.sort(allwords);
     }
 
-    public String search(String word) {
-        String json = null;
-        List<PageEntry> searchWords = new ArrayList<>();
+    public ArrayList search(String word) {
 
-        try {
-            for (int i = 0; i <= allwords.size() - 1; i++) {
-                if (word.equals(allwords.get(i).word)) {
-
-                    String pdfName = allwords.get(i).pdfName;
-                    int page = allwords.get(i).page;
-                    int count = allwords.get(i).count;
-
-                    PageEntry tmp2 = new PageEntry(word, pdfName, page, count);
-                    searchWords.add(tmp2);
-                }
-            }
-            ObjectMapper objectMapper = new ObjectMapper();
-            json = objectMapper.writeValueAsString(searchWords);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return json;
+        ArrayList<PageEntry> searchWords = (ArrayList<PageEntry>) mapAll.get(word);
+        Collections.sort(searchWords);
+        return searchWords;
     }
 }

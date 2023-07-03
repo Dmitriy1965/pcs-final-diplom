@@ -1,5 +1,5 @@
-
+import java.util.ArrayList;
 
 public interface SearchEngine {
-    String search(String word);
+    ArrayList search(String word);
 }
