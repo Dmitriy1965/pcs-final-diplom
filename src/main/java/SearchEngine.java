@@ -1,5 +1,6 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public interface SearchEngine {
-    ArrayList search(String word);
+    ArrayList<PageEntry> search(String word);
 }

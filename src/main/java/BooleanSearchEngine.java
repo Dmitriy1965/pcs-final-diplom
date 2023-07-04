@@ -45,12 +45,16 @@ public class BooleanSearchEngine implements SearchEngine {
                 doc.close();
             }
         }
+
+        for (Map.Entry<String, Object> entry : mapAll.entrySet()) {
+            List<PageEntry> value = (List<PageEntry>) entry.getValue(); // get value
+            Collections.sort(value);
+        }
     }
 
     public ArrayList search(String word) {
 
-        ArrayList<PageEntry> searchWords = (ArrayList<PageEntry>) mapAll.get(word);
-        Collections.sort(searchWords);
-        return searchWords;
+        List<PageEntry> searchWords = (ArrayList<PageEntry>) mapAll.get(word);
+        return (ArrayList<PageEntry>) searchWords;
     }
 }
