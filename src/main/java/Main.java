@@ -23,8 +23,6 @@ public class Main {
                     try {
                         ObjectMapper objectMapper = new ObjectMapper();
                         String json = objectMapper.writeValueAsString(engine.search(searchQuery));
-                        System.out.println(json);
-                        System.out.println(json.length());
 
                         if (json.equals("null")) {
                             out.println("Запрос не найден");

@@ -1,15 +1,12 @@
 public class PageEntry implements Comparable<PageEntry> {
-
     public final String pdfName;
     public final int page;
     public final int count;
-    public final String word;
 
-    public PageEntry(String word, String pdfName, int page, int count) {
+    public PageEntry(String pdfName, int page, int count) {
         this.pdfName = pdfName;
         this.page = page;
         this.count = count;
-        this.word = word;
     }
 
     @Override

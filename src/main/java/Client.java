@@ -19,8 +19,8 @@ public class Client {
             String answer = in.readLine();
             System.out.println(answer);
 
-     //      String psw = "БИЗнес";
-            String psw = "автоБИЗнес";
+         String psw = "БИЗнес";
+   //         String psw = "автоБИЗнес";
 
             out.println(psw);
             answer = in.readLine();

@@ -31,7 +31,7 @@ public class BooleanSearchEngine implements SearchEngine {
                     for (Map.Entry<String, Long> entry : map.entrySet()) {
                         String key = entry.getKey();  // get key
                         Long value = entry.getValue(); // get value
-                        PageEntry tmp = new PageEntry(key, item.getName(),
+                        PageEntry tmp = new PageEntry(item.getName(),
                                 page, Math.toIntExact(value));
 
                         List<PageEntry> temp2 = new ArrayList<>();
