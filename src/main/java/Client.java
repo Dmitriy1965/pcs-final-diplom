@@ -20,7 +20,7 @@ public class Client {
             System.out.println(answer);
 
          String psw = "БИЗнес";
-   //         String psw = "автоБИЗнес";
+       //     String psw = "автоБИЗнес";
 
             out.println(psw);
             answer = in.readLine();

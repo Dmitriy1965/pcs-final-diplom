@@ -52,9 +52,10 @@ public class BooleanSearchEngine implements SearchEngine {
         }
     }
 
-    public ArrayList search(String word) {
-
-        List<PageEntry> searchWords = (ArrayList<PageEntry>) mapAll.get(word);
-        return (ArrayList<PageEntry>) searchWords;
+    @Override
+    public List<PageEntry> search(String word) {
+        List<PageEntry> resultSearch = (List<PageEntry>) mapAll.get(word.toLowerCase());
+        if (null != resultSearch) return resultSearch;
+        return Collections.emptyList();
     }
 }

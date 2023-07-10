@@ -18,17 +18,13 @@ public class Main {
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 ) {
                     out.println("Ваш запрос");
-                    final String searchQuery = in.readLine().toLowerCase();
+                    final String searchQuery = in.readLine();
 
                     try {
                         ObjectMapper objectMapper = new ObjectMapper();
                         String json = objectMapper.writeValueAsString(engine.search(searchQuery));
+                        out.println(json);
 
-                        if (json.equals("null")) {
-                            out.println("Запрос не найден");
-                        } else {
-                            out.println(json);
-                        }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
